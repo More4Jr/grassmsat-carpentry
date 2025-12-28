@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRASSMAT Carpentry | Professional Training & Interior Design</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0b2a4a;
+            --primary-red: #c62828;
+            --primary-red-light: #e53935;
+            --secondary-gold: #d4af37;
+            --light-bg: #f8f9fa;
+            --light-card: #ffffff;
+            --text-dark: #222222;
+            --text-light: #666666;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 10px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ========== HEADER ========== */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a365d 100%);
+            color: white;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            background: var(--primary-red);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+        
+        .logo-text span {
+            color: var(--primary-red);
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-gold);
+        }
+        
+        .nav-link.active {
+            color: var(--secondary-gold);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-gold);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            height: 85vh;
+            min-height: 600px;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+        
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(113, 118, 123, 0.85) 0%, rgba(11, 42, 74, 0.7) 0%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 35px;
+            opacity: 0.95;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--primary-red);
+            color: white;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background: var(--primary-red-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(198, 40, 40, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ========== SECTIONS ========== */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-red);
+            border-radius: 2px;
+        }
+        
+        /* ========== CONTACT SECTION ========== */
+        .contact-section {
+            background: var(--light-card);
+            border-radius: var(--radius);
+            padding: 60px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            background: var(--primary-red);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+        }
+        
+        .contact-details p {
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-red);
+            transform: translateY(-5px);
+        }
+        
+        .social-link.facebook {
+            background: #1877F2;
+        }
+        
+        .social-link.whatsapp {
+            background: #25D366;
+        }
+        
+        /* Map */
+        .map-container {
+            margin-top: 30px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        /* ========== FEATURES SECTION ========== */
+        .features-section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 60px;
+            box-shadow: var(--shadow);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--primary-red);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            color: var(--primary-red);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-red);
+        }
+        
+        .footer-about {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-gold);
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--secondary-gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .contact-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                margin-top: 20px;
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            .nav-link {
+                padding: 12px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 25px;
+                right: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                display: block;
+                margin-bottom: 15px;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+            
+            .contact-section, .features-section {
+                padding: 40px 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <div>
+                        <div class="logo-text"><span>GRASSMAT</span> Carpentry</div>
+                        <div class="tagline">Training Institute & Professional Showroom</div>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav id="mainNav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#school" class="nav-link">Carpentry School</a>
+                    <a href="#showroom" class="nav-link">Interior Showroom</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="prospectus.pdf" class="nav-link" download>
+                        <i class="fas fa-download"></i> Prospectus
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="slideshow">
+            <!-- Slideshow Images -->
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="slide-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Master the Art of Carpentry & Interior Design</h1>
+            <p>Professional training combined with premium interior solutions. Learn from industry experts and transform spaces with quality craftsmanship.</p>
+            <div>
+                <a href="#school" class="btn">Join Our Carpentry School</a>
+                <a href="#showroom" class="btn btn-secondary">View Our Showroom</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- ========== WHY CHOOSE US SECTION ========== -->
+        <section class="section">
+            <div class="section-title">
+                <h2>Why Choose GRASSMAT Carpentry?</h2>
+            </div>
+            
+            <div class="features-section">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4>Hands-On Training</h4>
+                        <p>Learn through practical, real-world projects under the guidance of experienced carpenters and interior designers.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h4>Production & Training</h4>
+                        <p>We combine actual production work with training, preparing students for employment or starting their own business.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Quality Craftsmanship</h4>
+                        <p>We maintain the highest standards in both our training programs and finished interior design projects.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>Modern Equipment</h4>
+                        <p>Train with professional-grade tools and equipment used in the industry today.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CARPENTRY SCHOOL SECTION ========== -->
+        <section class="section" id="school">
+            <div class="section-title">
+                <h2>Carpentry Training School</h2>
+            </div>
+            
+            <div class="features-section">
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 20px; font-size: 1.8rem;">Students in Action</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cutting & Measuring" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+                            <h4>Cutting & Measuring</h4>
+                            <p>Master precision cutting techniques and accurate measurement for perfect fittings.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cabinet Making" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+                            <h4>Cabinet & Furniture Making</h4>
+                            <p>Learn to create custom cabinets, tables, chairs, and other furniture pieces.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <img src="images/workshop.png" alt="Workshop Practice" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
+                            <h4>Workshop Practice</h4>
+                            <p>Hands-on experience in a professional workshop environment.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--primary-dark); margin-bottom: 25px; font-size: 1.8rem;">Training Package Fees</h3>
+                    <div style="background: var(--light-bg); padding: 30px; border-radius: var(--radius); margin-bottom: 30px;">
+                        <ul style="list-style: none; margin-bottom: 25px;">
+                            <li style="padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between;">
+                                <span><strong>Uniform</strong> - Overalls</span>
+                                <span style="color: var(--primary-red); font-weight: bold;">M450</span>
+                            </li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; justify-content: space-between;">
+                                <span><strong>School fees</strong> - Per month</span>
+                                <span style="color: var(--primary-red); font-weight: bold;">M700</span>
+                            </li>
+                            <li style="padding: 12px 0; display: flex; justify-content: space-between;">
+                                <span><strong>School fees</strong> - Per quarter</span>
+                                <span style="color: var(--primary-red); font-weight: bold;">M2,100</span>
+                            </li>
+                        </ul>
+                        <p style="margin-bottom: 15px;"><strong>Registration Fee:</strong> <span style="color: var(--primary-red); font-weight: bold;">M200</span></p>
+                        <p style="font-style: italic; color: var(--text-light);">All materials and tools provided during training</p>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <a href="https://wa.me/26656319626" class="btn" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fab fa-whatsapp"></i> Register via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SHOWROOM SECTION ========== -->
+        <section class="section" id="showroom">
+            <div class="section-title">
+                <h2>Interior Design Showroom</h2>
+            </div>
+            
+            <div class="features-section">
+                <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; color: var(--text-light); max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Explore our collection of finished interior design projects. From custom kitchens to office furniture, 
+                    we create functional and beautiful spaces tailored to your needs.
+                </p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Custom Kitchen" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                        <h4>Custom Kitchen Cabinets</h4>
+                        <p>Beautiful and functional kitchen designs with premium finishes.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Office Furniture" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                        <h4>Office & Workspace Furniture</h4>
+                        <p>Ergonomic and stylish furniture for productive work environments.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wardrobe Design" style="width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                        <h4>Custom Wardrobes & Storage</h4>
+                        <p>Maximize your space with custom storage solutions.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="https://wa.me/26656319626" class="btn" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp for Showroom Inquiries
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACT SECTION ========== -->
+        <section class="section" id="contact">
+            <div class="section-title">
+                <h2>Contact & Location</h2>
+            </div>
+            
+            <div class="contact-section">
+                <div class="contact-grid">
+                    <div>
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Our Location</h4>
+                                <p>Hlotse, Near Traffic Offices</p>
+                                <p>Leribe, Lesotho</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone Numbers</h4>
+                                <p>(+266) 5631 9626</p>
+                                <p>(+266) 6912 4746</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                                <p>Saturday: 9:00 AM - 1:00 PM</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://facebook.com/DecoDoops" class="social-link facebook" target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://wa.me/26656319626" class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="mailto:info@grassmatcarpentry.com" class="social-link" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: var(--primary-dark); margin-bottom: 20px; font-size: 1.5rem;">Get In Touch</h3>
+                        <p style="margin-bottom: 25px; color: var(--text-light);">
+                            Interested in our training programs or interior design services? 
+                            Contact us today for more information or to schedule a visit.
+                        </p>
+                        
+                        <div style="background: var(--light-bg); padding: 25px; border-radius: var(--radius);">
+                            <p style="margin-bottom: 15px; display: flex; align-items: center;">
+                                <i class="fas fa-download" style="color: var(--primary-red); margin-right: 10px;"></i>
+                                <strong>Download our prospectus for complete course details:</strong>
+                            </p>
+                            <a href="prospectus.pdf" class="btn" download style="display: inline-flex; align-items: center; justify-content: center; gap: 10px;">
+                                <i class="fas fa-file-pdf"></i> Download Prospectus (PDF)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Hlotse%20Leribe%20Lesotho&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="350" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Grassmat Carpentry Location">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo"><span>GRASSMAT</span> Carpentry</div>
+                    <p class="footer-about">
+                        Professional carpentry training institute and interior design showroom 
+                        based in Hlotse, Lesotho. We're committed to excellence in craftsmanship 
+                        and education.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#school">Carpentry School</a></li>
+                        <li><a href="#showroom">Interior Showroom</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="prospectus.pdf" download>Download Prospectus</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Contact Info</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> Hlotse, Leribe, Lesotho</p>
+                        <p><i class="fas fa-phone"></i> (+266) 5631 9626</p>
+                        <p><i class="fab fa-whatsapp"></i> (+266) 6912 4746</p>
+                        <p><i class="fas fa-envelope"></i> info@grassmatcarpentry.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 GRASSMAT Carpentry. All rights reserved. | Training Institute & Professional Showroom</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Slideshow functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlides() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slideIndex = (slideIndex + 1) % slides.length;
+            slides[slideIndex].classList.add('active');
+        }
+        
+        // Start slideshow
+        setInterval(showSlides, 5000);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Active navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 150;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if(link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
